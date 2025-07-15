@@ -1,42 +1,28 @@
 #pragma once
-#pragma once
 #include <string>
-#include <cctype>
 
+// Clase para cifrado César con desplazamiento fijo
 class CifradoCesar {
 private:
     int desplazamiento;
 
 public:
-    // Constructor para definir el desplazamiento
     CifradoCesar(int d) : desplazamiento(d) {}
 
-    // Método para cifrar texto
+    // Cifrar texto desplazando caracteres ASCII
     std::string cifrar(const std::string& texto) {
-        std::string resultado = "";
-        for (char c : texto) {
-            if (std::isalpha(c)) {
-                char base = std::isupper(c) ? 'A' : 'a';
-                resultado += ((c - base + desplazamiento) % 26) + base;
-            }
-            else {
-                resultado += c;
-            }
+        std::string resultado = texto;
+        for (char& c : resultado) {
+            c = c + desplazamiento;
         }
         return resultado;
     }
 
-    // Método para descifrar texto
+    // Descifrar texto desplazando en sentido contrario
     std::string descifrar(const std::string& texto) {
-        std::string resultado = "";
-        for (char c : texto) {
-            if (std::isalpha(c)) {
-                char base = std::isupper(c) ? 'A' : 'a';
-                resultado += ((c - base - desplazamiento + 26) % 26) + base;
-            }
-            else {
-                resultado += c;
-            }
+        std::string resultado = texto;
+        for (char& c : resultado) {
+            c = c - desplazamiento;
         }
         return resultado;
     }

@@ -1,24 +1,25 @@
 #pragma once
-#pragma once
 #include <string>
 
+// Clase para cifrado XOR con clave carácter
 class CifradoXOR {
 private:
-    char clave; // clave para XOR
+    char clave;
 
 public:
     CifradoXOR(char k) : clave(k) {}
 
+    // Cifrar o descifrar con operación XOR (idéntica para ambos)
     std::string cifrar(const std::string& texto) {
         std::string resultado = texto;
-        for (size_t i = 0; i < resultado.size(); i++) {
-            resultado[i] = resultado[i] ^ clave;
+        for (char& c : resultado) {
+            c = c ^ clave;
         }
         return resultado;
     }
 
-    // El descifrado es igual que cifrado en XOR
     std::string descifrar(const std::string& texto) {
+        // XOR es simétrico
         return cifrar(texto);
     }
 };
